@@ -1,0 +1,25 @@
+# Ignore local .terraform directories
+**/.terraform/*
+
+# Ignore terraform state
+.tfstate
+*.tfstate
+*.tfstate.*
+
+# Ignore tfvars / json (except those auto loaded)
+*.tfvars
+*.tfvars.json
+!terraform.tfvars
+!terraform.tfvars.json
+!*.auto.tfvars
+!*.auto.tfvars.json
+
+# Ignore everything under .vault, except the v_*
+.vault/**/*
+!.vault/**/v_*
+
+# Ignore Logs
+crash.log
+
+# Ignore Plans
+*.tfplan
