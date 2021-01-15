@@ -1,7 +1,7 @@
 # Build the following Lab
 lab = [
     {
-        datacenter = "dc",
+        datacenter = "dc"
         datastore = "datastore"
         resource_pool = "pool"
         folder = "terraform"
@@ -24,7 +24,7 @@ lab = [
         additional_disks = []
     },
     {
-        datacenter = "dc",
+        datacenter = "dc"
         datastore = "datastore"
         resource_pool = "pool"
         folder = "terraform"

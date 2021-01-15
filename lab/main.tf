@@ -8,22 +8,26 @@ module "vault" {
 module "vsphere_vm" {
     source = "../modules/vsphere_vm"
 
-    count = length(var.lab)
+    for_each = {
+        for vm in var.lab: vm.vm_name => vm
+    }
 
-    datacenter = var.lab[count.index].datacenter
-    datastore = var.lab[count.index].datastore
-    resource_pool = var.lab[count.index].resource_pool
-    folder = var.lab[count.index].folder
-    network = var.lab[count.index].network
-    network_type = var.lab[count.index].network_type
-    network_options = var.lab[count.index].network_options
-    dns_domain = var.lab[count.index].dns_domain
-    template = var.lab[count.index].template
+    vm_name = each.key
 
-    vm_name = var.lab[count.index].vm_name
-    num_cpus = var.lab[count.index].num_cpus
-    memory = var.lab[count.index].memory
-    additional_disks = var.lab[count.index].additional_disks
+    datacenter = each.value.datacenter
+    datastore = each.value.datastore
+    resource_pool = each.value.resource_pool
+    folder = each.value.folder
+    network = each.value.network
+    network_type = each.value.network_type
+    network_options = each.value.network_options
+    dns_domain = each.value.dns_domain
+    template = each.value.template
+
+
+    num_cpus = each.value.num_cpus
+    memory = each.value.memory
+    additional_disks = each.value.additional_disks
 
     template_username = module.vault.data.packer_template_credentials.username
     template_password = module.vault.data.packer_template_credentials.password
